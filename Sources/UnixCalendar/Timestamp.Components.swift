@@ -1,95 +1,69 @@
-extension Timestamp
-{
-    @frozen public
-    struct Components:Equatable, Hashable, Sendable
-    {
-        public
-        var date:Date
-        public
-        var time:Time
+extension Timestamp {
+    @frozen public struct Components: Equatable, Hashable, Sendable {
+        public var date: Date
+        public var time: Time
 
-        @inlinable public
-        init(date:Date, time:Time = .midnight)
-        {
+        @inlinable public init(date: Date, time: Time = .midnight) {
             self.date = date
             self.time = time
         }
     }
 }
-extension Timestamp.Components
-{
+extension Timestamp.Components {
     /// Truncates the time component of the argument to midnight.
     ///
     /// This constructor is a shorthand for `init(date: self.date)`.
-    @inlinable public static
-    func date(_ self:Self) -> Self { .init(date: self.date) }
+    @inlinable public static func date(_ self: Self) -> Self { .init(date: self.date) }
 }
-extension Timestamp.Components
-{
-    public
-    init?(iso8601 string:String)
-    {
+extension Timestamp.Components {
+    public init?(iso8601 string: String) {
         self.init(iso8601: string[...])
     }
 
-    public
-    init?(iso8601 string:Substring)
-    {
+    public init?(iso8601 string: Substring) {
         guard
-        let hyphen:String.Index = string.firstIndex(of: "-"),
-        let year:Timestamp.Year = .init(string[..<hyphen])
-        else
-        {
+        let hyphen: String.Index = string.firstIndex(of: "-"),
+        let year: Timestamp.Year = .init(string[..<hyphen]) else {
             return nil
         }
 
-        let month:String.Index = string.index(after: hyphen)
+        let month: String.Index = string.index(after: hyphen)
 
         guard
-        let hyphen:String.Index = string[month...].firstIndex(of: "-"),
-        let month:Timestamp.Month = .init(string[month ..< hyphen])
-        else
-        {
+        let hyphen: String.Index = string[month...].firstIndex(of: "-"),
+        let month: Timestamp.Month = .init(string[month ..< hyphen]) else {
             return nil
         }
 
-        let day:String.Index = string.index(after: hyphen)
+        let day: String.Index = string.index(after: hyphen)
 
         guard
-        let t:String.Index = string[day...].firstIndex(of: "T"),
-        let day:Int32 = .init(string[day ..< t])
-        else
-        {
+        let t: String.Index = string[day...].firstIndex(of: "T"),
+        let day: Int32 = .init(string[day ..< t]) else {
             return nil
         }
 
-        let hour:String.Index = string.index(after: t)
+        let hour: String.Index = string.index(after: t)
 
         guard
-        let colon:String.Index = string[hour...].firstIndex(of: ":"),
-        let hour:Int32 = .init(string[hour ..< colon])
-        else
-        {
+        let colon: String.Index = string[hour...].firstIndex(of: ":"),
+        let hour: Int32 = .init(string[hour ..< colon]) else {
             return nil
         }
 
-        let minute:String.Index = string.index(after: colon)
+        let minute: String.Index = string.index(after: colon)
 
         guard
-        let colon:String.Index = string[minute...].firstIndex(of: ":"),
-        let minute:Int32 = .init(string[minute ..< colon])
-        else
-        {
+        let colon: String.Index = string[minute...].firstIndex(of: ":"),
+        let minute: Int32 = .init(string[minute ..< colon]) else {
             return nil
         }
 
-        let second:String.Index = string.index(after: colon)
+        let second: String.Index = string.index(after: colon)
 
         guard
-        let z:String.Index = string.indices.last, case "Z" = string[z],
-        let second:Int32 = .init(string[second ..< z])
-        else
-        {
+        let z: String.Index = string.indices.last, case "Z" = string[z],
+        let second: Int32 = .init(string[second ..< z]) else {
             return nil
         }
 
@@ -97,22 +71,18 @@ extension Timestamp.Components
 
         if  0 ..< 24 ~= hour,
             0 ..< 60 ~= minute,
-            0 ... 60 ~= second
-        {
-            self.init(date: .init(year: year, month: month, day: day),
-                time: .init(hour: hour, minute: minute, second: second))
-        }
-        else
-        {
+            0 ... 60 ~= second {
+            self.init(
+                date: .init(year: year, month: month, day: day),
+                time: .init(hour: hour, minute: minute, second: second)
+            )
+        } else {
             return nil
         }
     }
 }
-extension Timestamp.Components
-{
-    @inlinable public
-    var yyyymmddThhmmssZ:String
-    {
+extension Timestamp.Components {
+    @inlinable public var yyyymmddThhmmssZ: String {
         "\(self.date.yyyymmdd)T\(self.time.hh)\(self.time.mm)\(self.time.ss)Z"
     }
 }

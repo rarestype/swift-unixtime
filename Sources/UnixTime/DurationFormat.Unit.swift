@@ -1,8 +1,5 @@
-extension DurationFormat
-{
-    @frozen public
-    enum Unit:Equatable, Hashable, Comparable, Sendable
-    {
+extension DurationFormat {
+    @frozen public enum Unit: Equatable, Hashable, Comparable, Sendable {
         case attoseconds
         case femtoseconds
         case picoseconds
@@ -16,14 +13,10 @@ extension DurationFormat
         case weeks
     }
 }
-extension DurationFormat.Unit
-{
+extension DurationFormat.Unit {
     /// Returns the singular form of the unit in English.
-    @inlinable public
-    var singular:String
-    {
-        switch self
-        {
+    @inlinable public var singular: String {
+        switch self {
         case .weeks:        "week"
         case .days:         "day"
         case .hours:        "hour"
@@ -39,11 +32,8 @@ extension DurationFormat.Unit
     }
 
     /// Returns the plural form of the unit in English.
-    @inlinable public
-    var plural:String
-    {
-        switch self
-        {
+    @inlinable public var plural: String {
+        switch self {
         case .weeks:        "weeks"
         case .days:         "days"
         case .hours:        "hours"
@@ -59,11 +49,8 @@ extension DurationFormat.Unit
     }
 
     /// Returns a 1–2 character string indicating the unit in English.
-    @inlinable public
-    var short:String
-    {
-        switch self
-        {
+    @inlinable public var short: String {
+        switch self {
         case .weeks:        "w"
         case .days:         "d"
         case .hours:        "h"
@@ -78,8 +65,6 @@ extension DurationFormat.Unit
         }
     }
 }
-extension DurationFormat.Unit:CustomStringConvertible
-{
-    @inlinable public
-    var description:String { self.short }
+extension DurationFormat.Unit: CustomStringConvertible {
+    @inlinable public var description: String { self.short }
 }

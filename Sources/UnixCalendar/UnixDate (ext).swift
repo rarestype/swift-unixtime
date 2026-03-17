@@ -1,17 +1,14 @@
-import UnixTime
+public import UnixTime
 
-extension UnixDate
-{
+extension UnixDate {
     /// TODO: we ought to be able to perform the date arithmetic in the `UnixDate` type itself,
     /// without calling into the operating system.
-    @inlinable public
-    init?(utc date:Timestamp.Date,
-        sanity checks:Timestamp.Sanity = .year(in: 1970 ... 2970))
-    {
+    @inlinable public init?(
+        utc date: Timestamp.Date,
+        sanity checks: Timestamp.Sanity = .year(in: 1970 ... 2970)
+    ) {
         guard
-        let attosecond:UnixAttosecond = .init(utc: .init(date: date), sanity: checks)
-        else
-        {
+        let attosecond: UnixAttosecond = .init(utc: .init(date: date), sanity: checks) else {
             return nil
         }
 
@@ -19,9 +16,7 @@ extension UnixDate
     }
 
     /// Returns the current UTC date by calling into the operating system.
-    @inlinable public
-    static func today() -> Self { .init(truncating: UnixAttosecond.now()) }
+    @inlinable public static func today() -> Self { .init(truncating: UnixAttosecond.now()) }
 
-    public
-    var timestamp:Timestamp? { .init(secondSinceEpoch: Int.init(self.index * 86_400)) }
+    public var timestamp: Timestamp? { .init(secondSinceEpoch: Int.init(self.index * 86_400)) }
 }

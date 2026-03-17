@@ -1,23 +1,16 @@
-import CasesByIntegerEncodingMacro
+public import CasesByIntegerEncodingMacro
 
-extension ISO
-{
-    @GenerateCasesByIntegerEncoding
-    @frozen public
-    struct Country:Equatable, Hashable, Sendable
-    {
-        public
-        var rawValue:UInt16
+extension ISO {
+    @GenerateCasesByIntegerEncoding @frozen public struct Country: Equatable,
+        Hashable,
+        Sendable {
+        public var rawValue: UInt16
 
-        @inlinable public
-        init(rawValue:UInt16)
-        {
+        @inlinable public init(rawValue: UInt16) {
             self.rawValue = rawValue
         }
 
-        private
-        enum AvailableCases
-        {
+        private enum AvailableCases {
             case AD
             case AE
             case AF
@@ -313,40 +306,27 @@ extension ISO
         }
     }
 }
-extension ISO.Country:Comparable
-{
-    @inlinable public static
-    func < (a:Self, b:Self) -> Bool { a.rawValue < b.rawValue }
+extension ISO.Country: Comparable {
+    @inlinable public static func < (a: Self, b: Self) -> Bool { a.rawValue < b.rawValue }
 }
-extension ISO.Country:RawRepresentableByIntegerEncoding
-{
+extension ISO.Country: RawRepresentableByIntegerEncoding {
 }
-extension ISO.Country:CustomStringConvertible
-{
-    @inlinable public
-    var description:String
-    {
-        withUnsafeBytes(of: self.rawValue.bigEndian)
-        {
+extension ISO.Country: CustomStringConvertible {
+    @inlinable public var description: String {
+        withUnsafeBytes(of: self.rawValue.bigEndian) {
             .init(decoding: $0, as: Unicode.ASCII.self)
         }
     }
 }
-extension ISO.Country:LosslessStringConvertible
-{
-    @inlinable public
-    init?(_ description:some StringProtocol)
-    {
-        guard description.utf8.count == 2
-        else
-        {
+extension ISO.Country: LosslessStringConvertible {
+    @inlinable public init?(_ description: some StringProtocol) {
+        guard description.utf8.count == 2 else {
             return nil
         }
 
         self.init(rawValue: 0)
 
-        for byte:UInt8 in description.utf8
-        {
+        for byte: UInt8 in description.utf8 {
             self.rawValue <<= 8
             self.rawValue |= .init(byte)
         }
