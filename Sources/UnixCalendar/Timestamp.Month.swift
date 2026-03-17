@@ -1,10 +1,7 @@
-import ISO
+public import ISO
 
-extension Timestamp
-{
-    @frozen public
-    enum Month:Int32, Equatable, Hashable, Sendable, CaseIterable
-    {
+extension Timestamp {
+    @frozen public enum Month: Int32, Equatable, Hashable, Sendable, CaseIterable {
         case january = 1
         case february
         case march
@@ -19,13 +16,9 @@ extension Timestamp
         case december
     }
 }
-extension Timestamp.Month
-{
-    @inlinable public
-    var predecessor:Self
-    {
-        switch self
-        {
+extension Timestamp.Month {
+    @inlinable public var predecessor: Self {
+        switch self {
         case .january:      .december
         case .february:     .january
         case .march:        .february
@@ -40,11 +33,8 @@ extension Timestamp.Month
         case .december:     .november
         }
     }
-    @inlinable public
-    var successor:Self
-    {
-        switch self
-        {
+    @inlinable public var successor: Self {
+        switch self {
         case .january:      .february
         case .february:     .march
         case .march:        .april
@@ -60,40 +50,27 @@ extension Timestamp.Month
         }
     }
 }
-extension Timestamp.Month:LosslessStringConvertible
-{
-    @inlinable public
-    init?(_ description:some StringProtocol)
-    {
+extension Timestamp.Month: LosslessStringConvertible {
+    @inlinable public init?(_ description: some StringProtocol) {
         guard
-        let rawValue:Int32 = .init(description)
-        else
-        {
+        let rawValue: Int32 = .init(description) else {
             return nil
         }
 
         self.init(rawValue: rawValue)
     }
 }
-extension Timestamp.Month:CustomStringConvertible
-{
+extension Timestamp.Month: CustomStringConvertible {
     /// Formats the month without leading zeros.
-    @inlinable public
-    var description:String { "\(self.rawValue)" }
+    @inlinable public var description: String { "\(self.rawValue)" }
 }
-extension Timestamp.Month
-{
+extension Timestamp.Month {
     /// Formats the month with two digits, zero-padded.
-    @inlinable public
-    var padded:String { self.rawValue < 10 ? "0\(self)" : "\(self)" }
+    @inlinable public var padded: String { self.rawValue < 10 ? "0\(self)" : "\(self)" }
 }
-extension Timestamp.Month
-{
-    @inlinable public
-    func days(leap:Bool) -> ClosedRange<Int32>
-    {
-        switch self
-        {
+extension Timestamp.Month {
+    @inlinable public func days(leap: Bool) -> ClosedRange<Int32> {
+        switch self {
         case .january:      1 ... 31
         case .february:     leap ? 1 ... 29 : 1 ... 28
         case .march:        1 ... 31
@@ -109,14 +86,10 @@ extension Timestamp.Month
         }
     }
 }
-extension Timestamp.Month
-{
+extension Timestamp.Month {
     /// Returns the three-letter abbreviation of the month in English.
-    @inlinable public
-    var short:String
-    {
-        switch self
-        {
+    @inlinable public var short: String {
+        switch self {
         case .january:      "Jan"
         case .february:     "Feb"
         case .march:        "Mar"
@@ -132,16 +105,11 @@ extension Timestamp.Month
         }
     }
 
-    @inlinable public
-    func long(_ locale:ISO.Locale, capitalized:Bool = false) -> String
-    {
-        switch locale.language
-        {
+    @inlinable public func long(_ locale: ISO.Locale, capitalized: Bool = false) -> String {
+        switch locale.language {
         case .es:
-            if  capitalized
-            {
-                switch self
-                {
+            if  capitalized {
+                switch self {
                 case .january:      "Enero"
                 case .february:     "Febrero"
                 case .march:        "Marzo"
@@ -155,11 +123,8 @@ extension Timestamp.Month
                 case .november:     "Noviembre"
                 case .december:     "Diciembre"
                 }
-            }
-            else
-            {
-                switch self
-                {
+            } else {
+                switch self {
                 case .january:      "enero"
                 case .february:     "febrero"
                 case .march:        "marzo"
@@ -176,8 +141,7 @@ extension Timestamp.Month
             }
 
         case .en, _:
-            switch self
-            {
+            switch self {
             case .january:      "January"
             case .february:     "February"
             case .march:        "March"
