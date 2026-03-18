@@ -10,5 +10,5 @@ jobs:
     build:
         uses: rarestype/swift-device-action/.github/workflows/build.yml@master
         with:
-            xcode-scheme: 'swift-unixtime-Package'
+            xcode-scheme: 'u-Package'
             destination: ${{ github.workflow }}

@@ -1,10 +1,10 @@
 <div align="center">
 
-🌚 &nbsp; **swift-unixtime** &nbsp; 🌝
+🌚 &nbsp; **u** &nbsp; 🌝
 
 a portable Foundation-free library for working with machine time and its human-readable representations
 
-[documentation and api reference](https://swiftinit.org/docs/swift-unixtime/unixtime)
+[documentation and api reference](https://swiftinit.org/docs/u/unixtime)
 
 </div>
 
@@ -14,14 +14,14 @@ One of the paramount goals of this library is to allow other libraries to exchan
 
 ## Requirements
 
-The swift-unixtime library requires Swift 6.2 or later.
+The u library requires Swift 6.2 or later.
 
 | Platform | Status |
 | -------- | ------ |
-| 💬 Documentation | [![Documentation](https://github.com/rarestype/swift-unixtime/actions/workflows/Documentation.yml/badge.svg)](https://github.com/rarestype/swift-unixtime/actions/workflows/Documentation.yml) |
-| 🐧 Linux | [![Tests](https://github.com/rarestype/swift-unixtime/actions/workflows/Tests.yml/badge.svg)](https://github.com/rarestype/swift-unixtime/actions/workflows/Tests.yml) |
-| 🍏 Darwin | [![Tests](https://github.com/rarestype/swift-unixtime/actions/workflows/Tests.yml/badge.svg)](https://github.com/rarestype/swift-unixtime/actions/workflows/Tests.yml) |
-| 🍏 Darwin (iOS) | [![iOS](https://github.com/rarestype/swift-unixtime/actions/workflows/iOS.yml/badge.svg)](https://github.com/rarestype/swift-unixtime/actions/workflows/iOS.yml) |
-| 🍏 Darwin (tvOS) | [![tvOS](https://github.com/rarestype/swift-unixtime/actions/workflows/tvOS.yml/badge.svg)](https://github.com/rarestype/swift-unixtime/actions/workflows/tvOS.yml) |
-| 🍏 Darwin (visionOS) | [![visionOS](https://github.com/rarestype/swift-unixtime/actions/workflows/visionOS.yml/badge.svg)](https://github.com/rarestype/swift-unixtime/actions/workflows/visionOS.yml) |
-| 🍏 Darwin (watchOS) | [![watchOS](https://github.com/rarestype/swift-unixtime/actions/workflows/watchOS.yml/badge.svg)](https://github.com/rarestype/swift-unixtime/actions/workflows/watchOS.yml) |
+| 💬 Documentation | [![Documentation](https://github.com/rarestype/u/actions/workflows/Documentation.yml/badge.svg)](https://github.com/rarestype/u/actions/workflows/Documentation.yml) |
+| 🐧 Linux | [![Tests](https://github.com/rarestype/u/actions/workflows/Tests.yml/badge.svg)](https://github.com/rarestype/u/actions/workflows/Tests.yml) |
+| 🍏 Darwin | [![Tests](https://github.com/rarestype/u/actions/workflows/Tests.yml/badge.svg)](https://github.com/rarestype/u/actions/workflows/Tests.yml) |
+| 🍏 Darwin (iOS) | [![iOS](https://github.com/rarestype/u/actions/workflows/iOS.yml/badge.svg)](https://github.com/rarestype/u/actions/workflows/iOS.yml) |
+| 🍏 Darwin (tvOS) | [![tvOS](https://github.com/rarestype/u/actions/workflows/tvOS.yml/badge.svg)](https://github.com/rarestype/u/actions/workflows/tvOS.yml) |
+| 🍏 Darwin (visionOS) | [![visionOS](https://github.com/rarestype/u/actions/workflows/visionOS.yml/badge.svg)](https://github.com/rarestype/u/actions/workflows/visionOS.yml) |
+| 🍏 Darwin (watchOS) | [![watchOS](https://github.com/rarestype/u/actions/workflows/watchOS.yml/badge.svg)](https://github.com/rarestype/u/actions/workflows/watchOS.yml) |
