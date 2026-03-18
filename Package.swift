@@ -4,7 +4,7 @@ import CompilerPluginSupport
 import PackageDescription
 
 let package: Package = .init(
-    name: "swift-unixtime",
+    name: "u",
     platforms: [.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v9)],
     products: [
         .library(name: "CasesByIntegerEncodingMacro", targets: ["CasesByIntegerEncodingMacro"]),
@@ -14,7 +14,7 @@ let package: Package = .init(
         .library(name: "UnixTime", targets: ["UnixTime"])
     ],
     dependencies: [
-        .package(url: "https://github.com/ordo-one/dollup", from: "1.0.0"),
+        .package(url: "https://github.com/ordo-one/dollup", from: "1.0.1"),
     ],
     targets: [
         .target(
@@ -93,9 +93,9 @@ default:
     )
 }
 
-for target: PackageDescription.Target in package.targets {
+for target: Target in package.targets {
     {
-        var settings: [PackageDescription.SwiftSetting] = $0 ?? []
+        var settings: [SwiftSetting] = $0 ?? []
 
         settings.append(.enableUpcomingFeature("InternalImportsByDefault"))
         settings.append(.enableUpcomingFeature("ExistentialAny"))
