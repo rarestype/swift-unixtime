@@ -1,3 +1,5 @@
+public import Synchronization
+
 /// A very low-precision instant in time, measured in days since the Unix epoch.
 ///
 /// Like ``UnixMillisecond``, this type is mostly used with persistence, although it is not as
@@ -25,6 +27,14 @@ extension UnixDate {
 }
 extension UnixDate: Comparable {
     @inlinable public static func < (a: Self, b: Self) -> Bool { a.index < b.index }
+}
+extension UnixDate: AtomicRepresentable {
+    @inlinable public static func decodeAtomicRepresentation(_ index: consuming Int64) -> Self {
+        self.init(index: index)
+    }
+    @inlinable public static func encodeAtomicRepresentation(_ self: consuming Self) -> Int64 {
+        self.index
+    }
 }
 extension UnixDate: UnixInterval {
     public typealias Duration = Days

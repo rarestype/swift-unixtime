@@ -1,4 +1,9 @@
-public protocol QuantizedDuration: RawRepresentable<Int64>, DurationProtocol, Hashable {
+public import Synchronization
+
+public protocol QuantizedDuration: RawRepresentable<Int64>,
+    AtomicRepresentable,
+    DurationProtocol,
+    Hashable {
     static var unit: DurationFormat.Unit { get }
 
     var count: Int64 { get }
@@ -11,6 +16,14 @@ extension QuantizedDuration {
     @inlinable public init(rawValue: Int64) { self.init(count: rawValue) }
 
     @inlinable public var rawValue: Int64 { self.count }
+}
+extension QuantizedDuration {
+    @inlinable public static func decodeAtomicRepresentation(_ count: consuming Int64) -> Self {
+        self.init(count: count)
+    }
+    @inlinable public static func encodeAtomicRepresentation(_ self: consuming Self) -> Int64 {
+        self.count
+    }
 }
 extension QuantizedDuration where Self: CustomStringConvertible {
     @inlinable public var description: String { "\(self.count) \(Self.unit)" }

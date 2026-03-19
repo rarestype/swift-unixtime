@@ -1,3 +1,5 @@
+import Synchronization
+
 @frozen public struct Microseconds: Hashable, Sendable {
     public let count: Int64
 

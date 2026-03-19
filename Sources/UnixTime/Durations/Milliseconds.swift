@@ -1,3 +1,5 @@
+import Synchronization
+
 /// A duration containing an integral number of milliseconds.
 ///
 /// As this type is intended to witness ``UnixMillisecond``’s ``InstantProtocol/Duration``

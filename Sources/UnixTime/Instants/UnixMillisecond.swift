@@ -1,3 +1,5 @@
+public import Synchronization
+
 /// A low-precision instant in time, measured in milliseconds since the Unix epoch.
 ///
 /// Low-precision time is mostly used with persisted data structures and algorithms. It excels
@@ -33,6 +35,14 @@ extension UnixMillisecond {
     /// Returns the instant corresponding to 00:00:00 UTC on the given date.
     @inlinable public init(_ date: UnixDate) {
         self.init(index: date.index * 86_400_000)
+    }
+}
+extension UnixMillisecond: AtomicRepresentable {
+    @inlinable public static func decodeAtomicRepresentation(_ index: consuming Int64) -> Self {
+        self.init(index: index)
+    }
+    @inlinable public static func encodeAtomicRepresentation(_ self: consuming Self) -> Int64 {
+        self.index
     }
 }
 extension UnixMillisecond: Comparable {

@@ -1,3 +1,5 @@
+import Synchronization
+
 /// A duration containing an integral number of days.
 @frozen public struct Days: Hashable, Sendable {
     /// The number of days in this duration.
